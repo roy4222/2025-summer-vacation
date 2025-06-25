@@ -1,94 +1,155 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import NavigationButtons from './components/NavigationButtons';
 
+/**
+ * 首頁組件
+ * 
+ * 提供基本的網站首頁功能，包含：
+ * - 歡迎標題
+ * - 簡介文字
+ * - 基本導航連結
+ * 
+ * @returns {JSX.Element} 首頁頁面組件
+ */
 export default function Home() {
+  console.log('渲染首頁組件');
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div style={{ 
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '2rem',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      {/* 主要內容區域 */}
+      <main style={{
+        textAlign: 'center',
+        maxWidth: '800px',
+        margin: '0 auto'
+      }}>
+        {/* 主標題 */}
+        <h1 style={{
+          fontSize: '3rem',
+          fontWeight: 'bold',
+          marginBottom: '1.5rem',
+          color: '#333',
+          lineHeight: '1.2'
+        }}>
+          歡迎來到我的網站
+        </h1>
+        
+        {/* 副標題 */}
+        <p style={{
+          fontSize: '1.25rem',
+          color: '#666',
+          marginBottom: '2rem',
+          lineHeight: '1.6'
+        }}>
+          這是一個使用 Next.js 建立的基本首頁，
+          展示簡潔的設計和良好的使用者體驗。
+        </p>
+        
+        {/* 導航按鈕區域 */}
+        <NavigationButtons />
+        
+        {/* 功能特點列表 */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '1.5rem',
+          marginTop: '2rem'
+        }}>
+          <div style={{
+            padding: '1.5rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '0.5rem',
+            border: '1px solid #e9ecef'
+          }}>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              color: '#333'
+            }}>
+              快速載入
+            </h3>
+            <p style={{ 
+              color: '#666',
+              lineHeight: '1.5',
+              margin: '0'
+            }}>
+              使用 Next.js 優化的效能，
+              提供快速的頁面載入體驗。
+            </p>
+          </div>
+          
+          <div style={{
+            padding: '1.5rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '0.5rem',
+            border: '1px solid #e9ecef'
+          }}>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              color: '#333'
+            }}>
+              響應式設計
+            </h3>
+            <p style={{ 
+              color: '#666',
+              lineHeight: '1.5',
+              margin: '0'
+            }}>
+              適配各種螢幕尺寸，
+              在手機和桌面都有良好體驗。
+            </p>
+          </div>
+          
+          <div style={{
+            padding: '1.5rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '0.5rem',
+            border: '1px solid #e9ecef'
+          }}>
+            <h3 style={{ 
+              fontSize: '1.25rem', 
+              fontWeight: '600',
+              marginBottom: '0.5rem',
+              color: '#333'
+            }}>
+              現代技術
+            </h3>
+            <p style={{ 
+              color: '#666',
+              lineHeight: '1.5',
+              margin: '0'
+            }}>
+              採用最新的 React 和 Next.js 技術，
+              確保程式碼品質和維護性。
+            </p>
+          </div>
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      
+      {/* 頁尾 */}
+      <footer style={{
+        marginTop: 'auto',
+        padding: '2rem 0',
+        borderTop: '1px solid #e9ecef',
+        width: '100%',
+        textAlign: 'center'
+      }}>
+        <p style={{
+          color: '#666',
+          fontSize: '0.875rem',
+          margin: '0'
+        }}>
+          © 2024 我的網站. 版權所有.
+        </p>
       </footer>
     </div>
   );
