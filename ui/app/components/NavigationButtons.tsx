@@ -1,5 +1,9 @@
 'use client';
 
+import { Button, Stack, Link } from '@chakra-ui/react';
+import { ColorModeButton } from '../../components/ui/color-mode';
+import NextLink from 'next/link';
+
 /**
  * 導航按鈕組件
  * 
@@ -7,6 +11,7 @@
  * - hover 效果
  * - 樣式切換
  * - 點擊導航功能
+ * - 色彩模式切換
  * 
  * @returns {JSX.Element} 導航按鈕組件
  */
@@ -14,62 +19,43 @@ export default function NavigationButtons() {
   console.log('渲染導航按鈕組件');
   
   return (
-    <div style={{
-      display: 'flex',
-      gap: '1rem',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      marginBottom: '3rem'
-    }}>
-      <a
-        href="/about"
-        style={{
-          backgroundColor: '#0070f3',
-          color: 'white',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '0.5rem',
-          textDecoration: 'none',
-          fontSize: '1rem',
-          fontWeight: '500',
-          transition: 'background-color 0.2s ease',
-          border: 'none',
-          cursor: 'pointer'
+    <Stack 
+      direction={{ base: 'column', sm: 'row' }} 
+      gap={4} 
+      align="center"
+      justify="center"
+      wrap="wrap"
+      mb={12}
+    >
+      <Button
+        asChild
+        colorPalette="blue"
+        variant="solid"
+        size="lg"
+        _hover={{
+          transform: 'translateY(-2px)',
+          shadow: 'lg'
         }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = '#0056b3';
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = '#0070f3';
-        }}
+        transition="all 0.2s"
       >
-        關於我們
-      </a>
+        <NextLink href="/about">關於我們</NextLink>
+      </Button>
       
-      <a
-        href="/contact"
-        style={{
-          backgroundColor: 'transparent',
-          color: '#0070f3',
-          padding: '0.75rem 1.5rem',
-          borderRadius: '0.5rem',
-          textDecoration: 'none',
-          fontSize: '1rem',
-          fontWeight: '500',
-          border: '2px solid #0070f3',
-          transition: 'all 0.2s ease',
-          cursor: 'pointer'
+      <Button
+        asChild
+        colorPalette="blue"
+        variant="outline"
+        size="lg"
+        _hover={{
+          transform: 'translateY(-2px)',
+          shadow: 'lg'
         }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = '#0070f3';
-          e.currentTarget.style.color = 'white';
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = 'transparent';
-          e.currentTarget.style.color = '#0070f3';
-        }}
+        transition="all 0.2s"
       >
-        聯絡我們
-      </a>
-    </div>
+        <NextLink href="/contact">聯絡我們</NextLink>
+      </Button>
+      
+      <ColorModeButton size="lg" />
+    </Stack>
   );
 } 
