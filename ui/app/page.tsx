@@ -180,7 +180,8 @@ export default function Home() {
         id="home"
         pt={24}
         pb={20}
-        bgGradient="linear(to-br, blue.500, purple.600)"
+        bg="blue.500"
+        bgImage="linear-gradient(135deg, #3182ce 0%, #9d4edd 100%)"
         color="white"
         position="relative"
         overflow="hidden"
@@ -212,7 +213,8 @@ export default function Home() {
             direction={{ base: 'column', lg: 'row' }} 
             align="center" 
             gap={12}
-            minH="80vh"
+            minH="90vh"
+            py={8}
           >
             {/* 左側內容 */}
             <VStack 
