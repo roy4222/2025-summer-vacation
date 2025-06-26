@@ -1,199 +1,85 @@
-# 暑假實習變強計畫
+好的，這份「暑假實習變強計畫」非常紮實且目標明確！你已經把需要學習的技術點都羅列出來了，現在最需要的就是一個能將這些知識「串連」起來的實戰專案。
 
-## 1. **Chakra v2 CSS 庫**
+單獨練習每個技術點，就像學習單字；而完成一個專案，就像用這些單字寫出一篇文章，能讓你真正內化所學。
 
-- **說明**：Chakra UI 是一個基於 React 的 UI 組件庫，提供可高度自定義、易於使用的組件，支援無障礙設計（a11y）及主題化。
-- **準備重點**：
-    - 熟悉 Chakra UI v2 的核心組件（Button、Box、Stack、Flex 等）。
-    - 學習其主題系統（Theme、extendTheme）與樣式屬性（sx、props）。
-    - 練習響應式設計（使用 `useBreakpointValue` 或陣列語法）。
-    - 查看官方文件（[https://chakra-ui.com/docs](https://chakra-ui.com/docs)），重點看 v2 的更新，例如改進的 TypeScript 支援和性能優化。
-    - 嘗試搭建一個簡單的頁面（例如表單或卡片組件）來熟悉語法。
-- **建議**：下載官方範例程式碼，實際運行並修改，快速上手。
-
-> **你不是實力不夠，也不是太依賴 AI。你只是被「學習」這個詞給騙了。**
+這份專案提案將圍繞你的學習清單設計，讓你能在一個專案中，把 Chakra UI、React Hooks、演算法、SSR、原子設計和 Git 流程全部應用一遍。
 
 ---
 
-## 2. **遞迴函數 - 費波那契數列（數字 50、100、1000）**
+### **專案提案：Dev-Dash 個人化開發者工具儀表板**
 
-📖 參考文章：[初學者學演算法｜從費氏數列認識何謂遞迴](https://medium.com/appworks-school/%E5%88%9D%E5%AD%B8%E8%80%85%E5%AD%B8%E6%BC%94%E7%AE%97%E6%B3%95-%E5%BE%9E%E8%B2%BB%E6%B0%8F%E6%95%B8%E5%88%97%E8%AA%8D%E8%AD%98%E4%BD%95%E8%AC%82%E9%81%9E%E8%BF%B4-dea15d2808a3)
+**專案概念：**
+打造一個專為開發者設計的單頁式網頁應用（SPA），整合多種常用的小工具。這個專案不僅實用，而且結構清晰，非常適合用來練習元件化開發、狀態管理和效能優化。
 
-- **說明**：費波那契數列是一個數列，每個數字是前兩個數字之和（F(n) = F(n-1) + F(n-2)，F(0)=0，F(1)=1）。
-- **準備重點**：
-    - **基本遞迴實現**：
-        ```javascript
-        function fibonacci(n) {
-          if (n <= 1) return n;
-          return fibonacci(n - 1) + fibonacci(n - 2);
-        }
-        ```
-        - 問題：對於大數字（50、100、1000），純遞迴效率低，會導致堆疊溢位或性能瓶頸。
-    - **優化方式**：
-        - **動態規劃（DP）**：使用陣列或物件儲存中間結果，避免重複計算。
-            ```javascript
-            function fibonacciDP(n) {
-              let dp = [0, 1];
-              for (let i = 2; i <= n; i++) {
-                dp[i] = dp[i - 1] + dp[i - 2];
-              }
-              return dp[n];
-            }
-            ```
-        - **記憶化（Memoization）**：快取遞迴結果。
-            ```javascript
-            function fibonacciMemo(n, memo = {}) {
-              if (n <= 1) return n;
-              if (n in memo) return memo[n];
-              memo[n] = fibonacciMemo(n - 1, memo) + fibonacciMemo(n - 2, memo);
-              return memo[n];
-            }
-            ```
-    - **針對大數字（50、100、1000）**：
-        - 費波那契數列增長很快，1000 可能導致數值溢位，需考慮使用 BigInt（JavaScript）。
-            ```javascript
-            function fibonacciBigInt(n) {
-              let dp = [BigInt(0), BigInt(1)];
-              for (let i = 2; i <= n; i++) {
-                dp[i] = dp[i - 1] + dp[i - 2];
-              }
-              return dp[n];
-            }
-            console.log(fibonacciBigInt(50).toString());  // 測試50
-            console.log(fibonacciBigInt(100).toString()); // 測試100
-            console.log(fibonacciBigInt(1000).toString()); // 測試1000
-            ```
-    - **建議**：實作以上三種方法，比較性能（例如用 `console.time`），並理解為何純遞迴不適合大數字。
+**核心目標：**
+將你的「暑假實習變強計畫」中的 **7 大主題** 全部融入這個專案的開發流程與最終成品中。
 
 ---
 
-## 3. **React Hooks**
+### **功能模組規劃**
 
-📖 參考文章：[React Hooks 詳解](https://hackmd.io/@Heidi-Liu/react-hooks)
+這個儀表板由多個「工具卡片」組成，每個卡片都是一個獨立的功能模組。
 
-### useEffect
-- **說明**：用於處理副作用（side effects），如資料請求、訂閱、或 DOM 操作。
-- **準備重點**：
-    - 理解 `useEffect` 的依賴陣列（dependency array）如何影響執行時機。
-    - 學習清除副作用（return cleanup function），例如取消定時器或取消訂閱。
-        ```javascript
-        useEffect(() => {
-          const timer = setInterval(() => console.log("Tick"), 1000);
-          return () => clearInterval(timer); // 清除定時器
-        }, []); // 空依賴表示僅在組件掛載/卸載時執行
-        ```
-    - 常見用途：API 請求、事件監聽器設置。
+**1. 演算法效能測試器 (Algorithm Performance Tester)**
+   - **目的**：直接應用你的 **遞迴函數** 學習成果。
+   - **功能**：
+     - 一個輸入框，讓使用者輸入費波那契數列的 `n` 值（例如 50, 100, 1000）。
+     - 三個按鈕，分別觸發「純遞迴」、「記憶化 (Memoization)」、「動態規劃 (DP)」三種算法。
+     - 計算結果會顯示在畫面上，同時顯示每種算法的**執行時間**（可以使用 `console.time` 和 `console.timeEnd`）。
+     - 考慮到大數字，你需要使用 `BigInt` 來處理，並在畫面上以字串形式呈現結果。
 
-### useRef
-- **說明**：用於儲存可變引用，常用於存取 DOM 元素或保存不會觸發重新渲染的值。
-- **準備重點**：
-    - 訪問 DOM：`const inputRef = useRef(null);` 可用於聚焦輸入框（`inputRef.current.focus()`）。
-    - 儲存變數：`useRef` 的 `.current` 不會因重新渲染而重置。
-        ```javascript
-        const countRef = useRef(0);
-        countRef.current += 1; // 不觸發重新渲染
-        ```
+**2. Markdown 即時預覽器 (Markdown Live Previewer)**
+   - **目的**：練習複雜的狀態管理與 DOM 操作。
+   - **功能**：
+     - 畫面左右分割，左邊是 `textarea` 輸入區，右邊是即時預覽區。
+     - 當使用者在左側輸入 Markdown 語法時，右側會立即渲染成對應的 HTML 樣式。
+     - 你可以整合 `react-markdown` 或 `marked.js` 這類函式庫。
 
-### useCallback
-- **說明**：快取函數，防止子組件不必要的重新渲染。
-- **準備重點**：
-    - 搭配 `React.memo` 使用，確保函數引用穩定。
-        ```javascript
-        const memoizedCallback = useCallback(() => {
-          console.log("Called");
-        }, []); // 依賴陣列控制函數重新創建
-        ```
-
-### useMemo
-- **說明**：快取計算結果，優化性能。
-- **準備重點**：
-    - 用於昂貴的計算（例如資料處理）。
-        ```javascript
-        const memoizedValue = useMemo(() => expensiveCalculation(data), [data]);
-        ```
-
-**建議**：搭建一個 React 專案，實作一個包含 `useEffect`（API 請求）、`useRef`（表單聚焦）、`useCallback`（傳遞給子組件）、`useMemo`（計算篩選資料）的範例。
-
-📖 延伸閱讀：[React Hooks 深入探討](https://gcdeng.com/blog/react-hooks#usememo)
+**3. Git 指令速查表 (Git Cheatsheet)**
+   - **目的**：練習 SSR/SSG 與靜態內容的頁面呈現。
+   - **功能**：
+     - 一個靜態頁面，用卡片或列表形式展示常用的 Git 指令及其說明。
+     - 這個頁面的資料可以寫死在一個 JSON 檔案中，並使用 Next.js 的 `getStaticProps` 在建構時生成，達到最佳載入效能。
 
 ---
 
-## 4. **SSR（Server-Side Rendering）**
+### **技術與學習重點對應**
 
-- **說明**：伺服器端渲染技術，在伺服器生成 HTML，提升首屏加載速度和 SEO。
-- **準備重點**：
-    - 熟悉 Next.js（常見 SSR 框架），學習其 `getServerSideProps` 或 `getStaticProps`。
-    - 理解 SSR 與 CSR（客戶端渲染）的區別：
-        - SSR：伺服器返回完整 HTML，適合 SEO 和快速首屏。
-        - CSR：客戶端負責渲染，適合動態互動。
-    - 實作一個簡單 Next.js 頁面，使用 SSR 從 API 獲取資料並渲染。
-    - 注意 Hydration（客戶端接管伺服器渲染的過程）。
-- **建議**：閱讀 [Next.js 官方文件](https://nextjs.org/docs)，搭建一個 SSR 範例（例如動態博客頁面）。
+這部分將告訴你如何在專案中實踐你的學習清單：
 
----
-
-## 5. **Git PR（Pull Request）**
-
-- **說明**：Git 的分支合併請求，用於團隊協作和程式碼審查。
-- **準備重點**：
-    - 熟悉 Git 流程：
-        1. 創建分支：`git checkout -b feature/xxx`
-        2. 提交變更：`git commit -m "描述"`
-        3. 推送分支：`git push origin feature/xxx`
-        4. 創建 PR：在 GitHub/GitLab 上提交合併請求。
-    - 撰寫清晰的 PR 描述，包含變更內容、目的和測試方式。
-    - 處理 PR 衝突：使用 `git rebase` 或 `git merge` 解決。
-- **建議**：模擬一個小專案，創建分支並提交 PR，練習與同事模擬審查流程。
+| 學習項目 | 在 Dev-Dash 專案中的應用 |
+| :--- | :--- |
+| **1. Chakra UI v2** | 整個專案的 UI 都將由 Chakra UI 打造。從最基礎的 `Button`、`Input`，到佈局用的 `Box`、`Flex`、`Grid`，再到主題化 `extendTheme` 來定義你的儀表板風格。 |
+| **2. 原子設計** | 這是你組織 Chakra UI 元件的**指導原則**：<br> - **原子 (Atoms)**: `Button`, `Input`, `Text`, `Heading` 等。<br> - **分子 (Molecules)**: 「演算法測試器」中的輸入框＋執行按鈕組合。<br> - **有機體 (Organisms)**: 一個完整的「工具卡片」，例如整個「Markdown 預覽器」。<br> - **模板 (Templates)**: 整個儀表板的網格佈局。<br> - **頁面 (Pages)**: 最終呈現的完整儀表板。 |
+| **3. React Hooks** | - **`useState`**: 管理所有輸入框的狀態（費氏數列的 n、Markdown 內容）。<br> - **`useEffect`**: 在「演算法測試器」中，當計算完成後觸發副作用，例如顯示一個提示訊息或更新計時器。<br> - **`useMemo`**: **關鍵！** 用於緩存「演算法測試器」中昂貴的計算結果。當 `n` 值不變時，不需要重複計算。<br> - **`useCallback`**: 將事件處理函式（例如按鈕的 `onClick`）傳遞給子元件時，用 `useCallback` 包裹以避免不必要的重新渲染，特別適合搭配 `React.memo`。<br> - **`useRef`**: 可以用來在頁面載入時自動聚焦到某個輸入框，例如費氏數列的輸入框。 |
+| **4. SSR (Next.js)** | - **`getServerSideProps` (SSR)**: 儀表板的主頁可以使用 SSR，例如在伺服器端預先獲取一個「每日名言」並渲染，讓使用者每次刷新都看到不同的內容。<br> - **`getStaticProps` (SSG)**: 「Git 指令速查表」頁面是靜態內容，非常適合用 SSG，這能讓你體驗到 Next.js 不同渲染模式的優勢。 |
+| **5. Git PR** | 這是你的**開發流程**。你將為**每一個新功能**建立一個獨立的 `feature` 分支：<br>1. `git checkout -b feature/fibonacci-tester` <br>2. 完成後 `push` 並在 GitHub 上建立一個 Pull Request。<br>3. 在 PR 描述中，清楚說明你完成了什麼、如何測試。 |
+| **6. Code Review** | 既然你可能是一個人開發，你可以進行 **自我審查 (Self-Review)**：<br>1. 建立 PR 後，不要馬上合併。<br>2. 切換到 GitHub 的 PR 頁面，一行一行地檢查你自己的程式碼，就像你在審查別人的程式碼一樣。<br>3. 思考：「這裡的變數命名清楚嗎？」、「這個函式可以再拆分嗎？」、「有沒有留下不必要的 `console.log`？」。<br>4. 自己給自己留言，然後回到本地分支修改，再次 `push`。這個過程能極大地提升你的程式碼品質。 |
 
 ---
 
-## 6. **原子設計（Atomic Design）**
+### **開發步驟建議**
 
-- **說明**：由 Brad Frost 提出的 UI 設計方法論，將介面分解為五層：原子（Atoms）、分子（Molecules）、有機體（Organisms）、模板（Templates）、頁面（Pages）。
-- **準備重點**：
-    - **原子**：基礎元素（按鈕、輸入框）。
-    - **分子**：組合原子（表單、搜尋列）。
-    - **有機體**：更複雜的組件（導航欄、卡片列表）。
-    - **模板**：頁面佈局。
-    - **頁面**：最終呈現的完整頁面。
-    - 學習如何在 React/Chakra UI 中實現原子設計，確保組件可重用。
-- **建議**：設計一個簡單頁面（例如待辦清單），分解為原子、分子、有機體，並使用 Chakra UI 實現。
+1.  **Week 1: 基礎建設與第一個元件**
+    - 使用 `create-next-app` 建立專案。
+    - 整合 Chakra UI v2，並設定一個簡單的自訂主題（顏色、字體）。
+    - 應用**原子設計**，先打造出最基礎的原子元件（如 `PrimaryButton`, `Card`)。
+    - **Git**: 建立 `main` 分支，並為第一個功能建立 `feature/layout` 分支，完成儀表板的基本佈局。提交你的第一個 PR。
 
----
+2.  **Week 2: 核心功能開發**
+    - 在 `feature/fibonacci-tester` 分支上開發「演算法效能測試器」。
+    - 實作三種費氏數列函式，並整合 `BigInt`。
+    - 大量使用 **React Hooks** (`useState`, `useMemo`, `useCallback`) 來管理狀態與效能。
+    - 完成後，進行**自我 Code Review**，然後合併 PR。
 
-## 7. **Code Review**
+3.  **Week 3: 擴充功能與 SSR**
+    - 在新分支上開發「Markdown 即時預覽器」和「Git 指令速查表」。
+    - 在開發速查表時，練習使用 `getStaticProps`。
+    - 嘗試為主頁面加入 `getServerSideProps`，可以串接一個免費的 API（如 [Quotable API](https://github.com/lukePeavey/quotable)）來獲取每日名言。
 
-- **說明**：程式碼審查是檢查程式碼質量、確保一致性和減少錯誤的過程。
-- **準備重點**：
-    - **審查者**：
-        - 檢查程式碼可讀性、命名規範、邏輯正確性。
-        - 確認是否有單元測試、文件完整性。
-        - 提供具體、建設性的反饋（例如「建議將這段邏輯提取為獨立函數以提高可讀性」）。
-    - **被審查者**：
-        - 提交乾淨的程式碼（格式化、移除無用註釋）。
-        - 回應審查意見，解釋設計決策。
-    - 熟悉常見工具：GitHub PR 評論、GitLab MR、CodeClimate。
-- **建議**：模擬一次程式碼審查，找朋友或自己檢查一個小專案，記錄問題和改進建議。
+4.  **Week 4: 優化與總結**
+    - 完善響應式設計（RWD），確保在手機上也能正常瀏覽。
+    - 回頭檢視所有程式碼，進行重構與優化。
+    - 將專案部署到 Vercel 或 Netlify，並將 GitHub 連結放到你的履歷上。
 
----
-
-## 學習計劃建議
-
-1. **第一週**：熟悉 Chakra UI 和 React Hooks，搭建一個簡單的 React 應用，包含表單和動態資料展示。
-2. **第二週**：實作費波那契數列（包含純遞迴、DP、記憶化），並測試大數字（50、100、1000）。
-3. **第三週**：學習 Next.js SSR，搭建一個動態頁面，並結合 Chakra UI 和原子設計。
-4. **第四週**：練習 Git PR 流程，模擬程式碼審查，整理反饋並改進程式碼。
-
----
-
-## 額外建議
-
-- **實作專案**：將所有知識整合到一個小專案（例如一個簡單的待辦清單或博客），使用 Chakra UI、React Hooks、SSR，並提交到 GitHub 進行 PR 和 Code Review。
-- **資源**：
-    - [Chakra UI 官方文件](https://chakra-ui.com/docs)
-    - [Next.js 官方文件](https://nextjs.org/docs)
-    - 原子設計：Brad Frost 的《Atomic Design》或線上文章
-    - Git：Pro Git 書籍或 GitHub 官方教程
-- **記錄筆記**：使用 Notion 或類似工具記錄每個主題的學習心得和程式碼片段，方便複習。
-
-如果您需要更詳細的某部分說明（例如程式碼範例、資源連結），或想讓我幫您設計某部分的練習題，請隨時告訴我！
+這個專案不大不小，剛好能讓你把所有想學的東西都用上。祝你實習前功力大增！
