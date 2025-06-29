@@ -1,36 +1,7 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Day 1: React Hooks + Chakra UI 基礎**
+- **每日目標**：用 React + Chakra UI 搭建出一個靜態頁面。
+- **行動清單**：
+    1.  **環境**：`npx create-react-app my-intern-prep`，然後把 Chakra UI 裝進去。
+    2.  **Chakra UI**：專心用 `Box`, `Stack`, `Flex`, `Grid`, `Button`, `Input` 這幾個最核心的組件，試著排出一個簡單的個人名片或登入表單的**靜態**畫面。
+    3.  **React Hooks**：只用 `useState`。讓你的 Input 可以輸入文字，點擊按鈕後 `console.log` 出 state 的值。
+- **心態**：今天不要想著優化、不要想原子設計，目標只有一個：**讓畫面動起來**。

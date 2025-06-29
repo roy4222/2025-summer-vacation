@@ -1,53 +1,71 @@
+/* 主頁面容器樣式 */
 .page {
+  /* 定義灰色 RGB 值變數，用於創建不同透明度的灰色 */
   --gray-rgb: 0, 0, 0;
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
+  /* 定義按鈕懸停狀態的顏色變數 */
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
+  /* 使用 Grid 佈局，分為三行：頂部間距、主內容、底部間距 */
   display: grid;
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
+  
+  /* 設定最小高度為視窗高度，確保頁面填滿螢幕 */
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
+  
+  /* 使用 Geist Sans 字體 */
   font-family: var(--font-geist-sans);
 }
 
+/* 深色模式樣式 */
 @media (prefers-color-scheme: dark) {
   .page {
+    /* 在深色模式下，將灰色 RGB 值改為白色 */
     --gray-rgb: 255, 255, 255;
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
+    /* 深色模式下的按鈕懸停顏色 */
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
   }
 }
 
+/* 主內容區域樣式 */
 .main {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  /* 將主內容放置在 Grid 的第二行 */
   grid-row-start: 2;
 }
 
+/* 有序列表樣式 */
 .main ol {
+  /* 使用等寬字體 Geist Mono */
   font-family: var(--font-geist-mono);
   padding-left: 0;
   margin: 0;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: -0.01em;
+  /* 將列表標記放在內容內部 */
   list-style-position: inside;
 }
 
+/* 列表項目間距，除了最後一個項目 */
 .main li:not(:last-of-type) {
   margin-bottom: 8px;
 }
 
+/* 程式碼區塊樣式 */
 .main code {
   font-family: inherit;
   background: var(--gray-alpha-100);
@@ -56,22 +74,27 @@
   font-weight: 600;
 }
 
+/* 行動呼籲按鈕容器 */
 .ctas {
   display: flex;
   gap: 16px;
 }
 
+/* 行動呼籲按鈕基本樣式 */
 .ctas a {
   appearance: none;
-  border-radius: 128px;
+  border-radius: 128px; /* 圓角按鈕 */
   height: 48px;
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
+  
+  /* 平滑過渡效果 */
   transition:
     background 0.2s,
     color 0.2s,
     border-color 0.2s;
+  
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -81,88 +104,107 @@
   font-weight: 500;
 }
 
+/* 主要按鈕樣式（深色背景） */
 a.primary {
   background: var(--foreground);
   color: var(--background);
   gap: 8px;
 }
 
+/* 次要按鈕樣式（邊框樣式） */
 a.secondary {
   border-color: var(--gray-alpha-200);
   min-width: 158px;
 }
 
+/* 頁腳樣式 */
 .footer {
+  /* 將頁腳放置在 Grid 的第三行 */
   grid-row-start: 3;
   display: flex;
   gap: 24px;
 }
 
+/* 頁腳連結樣式 */
 .footer a {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+/* 頁腳圖片樣式，防止縮放 */
 .footer img {
   flex-shrink: 0;
 }
 
-/* Enable hover only on non-touch devices */
+/* 僅在非觸控裝置上啟用懸停效果 */
 @media (hover: hover) and (pointer: fine) {
+  /* 主要按鈕懸停效果 */
   a.primary:hover {
     background: var(--button-primary-hover);
     border-color: transparent;
   }
 
+  /* 次要按鈕懸停效果 */
   a.secondary:hover {
     background: var(--button-secondary-hover);
     border-color: transparent;
   }
 
+  /* 頁腳連結懸停效果 */
   .footer a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
 }
 
+/* 手機版響應式設計 */
 @media (max-width: 600px) {
   .page {
+    /* 減少手機版的內邊距 */
     padding: 32px;
     padding-bottom: 80px;
   }
 
   .main {
+    /* 主內容居中對齊 */
     align-items: center;
   }
 
   .main ol {
+    /* 列表文字居中 */
     text-align: center;
   }
 
   .ctas {
+    /* 按鈕垂直排列 */
     flex-direction: column;
   }
 
   .ctas a {
+    /* 調整手機版按鈕大小 */
     font-size: 14px;
     height: 40px;
     padding: 0 16px;
   }
 
   a.secondary {
+    /* 移除次要按鈕的最小寬度限制 */
     min-width: auto;
   }
 
   .footer {
+    /* 頁腳在手機版可換行並居中 */
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
   }
 }
 
+/* 深色模式下的 Logo 樣式 */
 @media (prefers-color-scheme: dark) {
   .logo {
+    /* 在深色模式下反轉 Logo 顏色 */
     filter: invert();
   }
 }
