@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Toaster as ChakraToaster,
@@ -7,7 +7,7 @@ import {
   Stack,
   Toast,
   createToaster,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 
 /**
  * 全域吐司通知器實例
@@ -18,18 +18,18 @@ import {
 export const toaster = createToaster({
   placement: "bottom-end",
   pauseOnPageIdle: true,
-})
+});
 
 /**
  * Toaster 組件
  * 用於在應用程式中顯示吐司通知的容器組件
- * 
+ *
  * 功能特點：
  * - 使用 Portal 將通知渲染到 DOM 的頂層，避免 z-index 問題
  * - 支援載入狀態顯示 (Spinner)
  * - 響應式寬度設計，在中等螢幕及以上使用固定寬度
  * - 支援標題、描述、動作按鈕和關閉按鈕
- * 
+ *
  * @returns 吐司通知容器組件
  */
 export const Toaster = () => {
@@ -63,5 +63,5 @@ export const Toaster = () => {
         )}
       </ChakraToaster>
     </Portal>
-  )
-}
+  );
+};

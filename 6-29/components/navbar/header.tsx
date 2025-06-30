@@ -1,24 +1,19 @@
-"use client"
+"use client";
 
-import {
-  Flex,
-  Heading,
-  Button,
-  Spacer,
-} from "@chakra-ui/react"
-import { ColorModeButton } from "@/components/ui/color-mode"
+import { Flex, Heading, Button, Spacer } from "@chakra-ui/react";
+import { ColorModeButton } from "@/components/ui/color-mode";
 
 /**
  * Header 組件
  * 頂部導航欄組件，包含網站標題、主題切換按鈕和登入按鈕
- * 
+ *
  * 功能特色：
  * - 固定在頂部的導航欄
  * - 響應式設計
  * - 毛玻璃效果背景
  * - 主題切換功能
  * - 懸停動畫效果
- * 
+ *
  * @returns Header 組件的 JSX 元素
  */
 export default function Header() {
@@ -38,8 +33,8 @@ export default function Header() {
       zIndex={10}
       shadow="sm"
     >
-      <Heading 
-        size="xl" 
+      <Heading
+        size="xl"
         color="fg.emphasized"
         fontWeight="bold"
         letterSpacing="tight"
@@ -48,21 +43,21 @@ export default function Header() {
       </Heading>
       <Spacer />
       <Flex align="center" gap={4}>
-        <ColorModeButton 
-          variant="ghost" 
+        <ColorModeButton
+          variant="ghost"
           size="md"
           _hover={{ bg: "bg.muted" }}
         />
-        <Button 
-          colorPalette="blue" 
-          variant="solid" 
+        <Button
+          colorPalette="blue"
+          variant="solid"
           size="md"
           px={6}
           borderRadius="full"
           fontWeight="semibold"
-          _hover={{ 
+          _hover={{
             transform: "translateY(-1px)",
-            shadow: "md"
+            shadow: "md",
           }}
           transition="all 0.2s"
         >
@@ -70,5 +65,5 @@ export default function Header() {
         </Button>
       </Flex>
     </Flex>
-  )
+  );
 }
