@@ -16,7 +16,7 @@ import {
   Separator,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import { ColorModeButton } from "@/components/ui/color-mode"
+import Header from "@/components/navbar/header"
 
 /**
  * 首頁組件
@@ -52,19 +52,7 @@ export default function HomePage() {
   return (
     <Box minH="100vh" bg="bg.canvas">
       {/* 頂部導航區域 */}
-      <Flex
-        as="header"
-        justify="space-between"
-        align="center"
-        p={4}
-        borderBottom="1px"
-        borderColor="border.subtle"
-      >
-        <Heading size="lg" color="fg.emphasized">
-          我的個人網站
-        </Heading>
-        <ColorModeButton />
-      </Flex>
+      <Header />
 
       <Container maxW="6xl" py={8}>
         <Stack gap={12}>
